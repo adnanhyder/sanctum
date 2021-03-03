@@ -18,12 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/register', [Users::class, 'store']);
-
-
 Route::post('/logins', [Users::class, 'logins']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/users', [Users::class, 'all']);
+    Route::post('/users', [Users::class, 'all']);
+    Route::post('/logout', [Users::class, 'logout']);
 
 });
