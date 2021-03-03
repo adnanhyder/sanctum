@@ -81,9 +81,23 @@ class Users extends Controller
 
         return response()->json(
             [
-                'status_code' => 401,
-                'login' => "faliure",
+                'status_code' => 200,
+                'login' => 1,
                 'user' => $user,
+
+            ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $user = Auth()->user();
+
+       $delete = $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
+        return response()->json(
+            [
+                'status_code' => 200,
+                'login' => 1,
+                'user_token_deleted' => $delete,
 
             ]);
     }
